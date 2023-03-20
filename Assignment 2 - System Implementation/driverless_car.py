@@ -105,7 +105,7 @@ class TrafficSignalRecognitionSensor(Sensor):
   def process_data(self):
     try:
       traffic_data = {
-        "traffic_light_state": "Green",
+        "traffic_light_state": random.choice(["Red", "Green", "Yellow"]),
         "time_to_change": 5,
         "weather": "Sunny"
       }
@@ -158,7 +158,7 @@ class TrafficSignalRecognitionDecision(Decision):
       if data["traffic_light_state"] == "Red":
         return f"Stop (Time to Change: {data['time_to_change']}s, Weather: {data['weather']})"
       elif data["traffic_light_state"] == "Yellow":
-        return f"Slow Down at I (Time to Change: {data['time_to_change']}s, Weather: {data['weather']})"
+        return f"Slow Down (Time to Change: {data['time_to_change']}s, Weather: {data['weather']})"
       elif data["traffic_light_state"] == "Green":
         return f"Go (Time to Change: {data['time_to_change']}s, Weather: {data['weather']})"
       else:
