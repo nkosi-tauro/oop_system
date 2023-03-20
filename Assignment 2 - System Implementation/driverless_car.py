@@ -70,6 +70,7 @@ Sensors such as Lane Detection, Obstacle Detection, etc. will be used to detect 
 
 # Sensor subclasses
 class LaneDetectionSensor(Sensor):
+  """The Lane Detection Sensor class will process data and pass it on to the corresponding decision class."""
   def process_data(self):
     try:
       lane_data = {
@@ -85,6 +86,7 @@ class LaneDetectionSensor(Sensor):
       return {}
 
 class ObstacleAvoidanceSensor(Sensor):
+  """The Obstacle Avoidance Sensor class will process data and pass it on to the corresponding decision class."""
   def process_data(self):
     try:
       obstacle_data = {
@@ -102,6 +104,7 @@ class ObstacleAvoidanceSensor(Sensor):
       return {}
 
 class TrafficSignalRecognitionSensor(Sensor):
+  """The Traffic Signal Recognition Sensor class will process data and pass it on to the corresponding decision class."""	
   def process_data(self):
     try:
       traffic_data = {
@@ -118,6 +121,7 @@ class TrafficSignalRecognitionSensor(Sensor):
 
 # Decision subclasses
 class LaneDetectionDecision(Decision):
+  """The Lane Detection Decision class will process the data from the Lane Detection Sensor"""
   def make_decision(self, data):
     try:
       if not data:
@@ -135,6 +139,7 @@ class LaneDetectionDecision(Decision):
       return "Unable to determine lane status."
 
 class ObstacleAvoidanceDecision(Decision):
+  """The obstacle avoidance decision class will process the data from the obstacle avoidance sensor."""	
   def make_decision(self, data):
     try:
       if not data:
@@ -151,6 +156,7 @@ class ObstacleAvoidanceDecision(Decision):
     
       
 class TrafficSignalRecognitionDecision(Decision):
+  """ The traffic signal recognition decision class will process the data from the traffic signal recognition sensor."""
   def make_decision(self, data):
     try:
       if not data:
@@ -170,6 +176,7 @@ class TrafficSignalRecognitionDecision(Decision):
 
 # Main program
 def start_driverless_car(choice):
+  """Starts the driverless car"""
   #initiate the subclasses
   #sensor classes
   try:
@@ -183,7 +190,7 @@ def start_driverless_car(choice):
     traffic_decision = TrafficSignalRecognitionDecision()
 
     control = Control()
-
+    # Instead of using if-else statements, I'm using a list to store the sensor and decision classes. I find this method to be more efficient and easier to read.
     if choice in range(1, 4):
       sensors = [lane_sensor, obstacle_sensor, traffic_sensor]
       decisions = [lane_decision, obstacle_decision, traffic_decision]
