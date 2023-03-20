@@ -1,3 +1,4 @@
+# pylint: disable=locally-disabled, multiple-statements, fixme, line-too-long
 """
 This python program is based on the design of the driverless car system. 
 I used my original design classes then added on what I thought could be additional scenarios for the prgram to handle.
@@ -45,4 +46,31 @@ class InvalidDecisionError(Exception):
   """Handles any invalid decision errors"""
   pass
 
+"""
+The bulk of the program will consist of 2 Subclasses, the Sensor and Decision subclasses. These will be used to process the data from the sensors and make a decision on what to do next. Each Sensor subclass will have a corresponding Decision subclass.
+
+So in a way simulating how the system would work in real life. 
+Sensors such as Lane Detection, Obstacle Detection, etc. will be used to detect the environment around the car and pass on the data to the decision class. 
+"""
+
+# Sensor subclasses
+class LaneDetectionSensor(Sensor):
+  pass
+
+class ObstacleAvoidanceSensor(Sensor):
+  pass
+
+class TrafficSignalRecognitionSensor(Sensor):
+  pass
+
+
+# Decision subclasses
+class LaneDetectionDecision(Decision):
+  pass
+
+class ObstacleAvoidanceDecision(Decision):
+  pass
+
+class TrafficSignalRecognitionDecision(Decision):
+  pass
 
