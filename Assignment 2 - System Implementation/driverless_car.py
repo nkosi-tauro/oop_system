@@ -30,3 +30,17 @@ class Control:
 	"""
 	pass
 
+
+# Exception classes
+"""
+Im implementing my own custom exception classes. This is because the program is not dynamic (limited user input), so I don't need to use the built in exception classes. Meaning there won't be any unforseen errors that the program could encounter (With exception to the ValueError class)
+"""
+
+class InvalidSensorDataError(Exception):
+    """Handles any invalid sensor data errors"""
+    pass
+
+
+class InvalidDecisionError(Exception):
+    """Handles any invalid decision errors"""
+    pass
