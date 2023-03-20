@@ -11,10 +11,10 @@ As I'm not creating a true "dynamic" system, and also trying not to over complic
 """
 # Initial design classes
 class Sensor:
-    """
-    The sensor class will process incoming data from the various sensors on the car.(the sensor subclasses)
+  """
+  The sensor class will process incoming data from the various sensors on the car.(the sensor subclasses)
 	"""
-    pass
+  pass
 
 
 class Decision:
@@ -37,10 +37,12 @@ Im implementing my own custom exception classes. This is because the program is 
 """
 
 class InvalidSensorDataError(Exception):
-    """Handles any invalid sensor data errors"""
-    pass
+  """Handles any invalid sensor data errors"""
+  pass
 
 
 class InvalidDecisionError(Exception):
-    """Handles any invalid decision errors"""
-    pass
+  """Handles any invalid decision errors"""
+  pass
+
+
