@@ -7,6 +7,7 @@ I used my original design classes then added on what I thought could be addition
 # It will be used to store decisions and obviously the faster we can add or remove decsions the smoother the operation of our vehicle 
 from collections import deque
 import random
+from abc import ABC, abstractmethod
 
 """
 I chose to keep the design classes from my design document. I think that they are a good representation of the system that I am trying to create.
@@ -15,18 +16,18 @@ As I'm not creating a true "dynamic" system, and also trying not to over complic
 # Initial design classes
 
 
-class Sensor:
+class Sensor(ABC):
   """
   The sensor class will process incoming data from the various sensors on the car.(the sensor subclasses)
 	"""
-
+  @abstractmethod
   def process_data(self):
     pass
 
 
-class Decision:
+class Decision(ABC):
   """The decision class will process the data from the sensors and make a decision on what to do next."""	
-  
+  @abstractmethod
   def make_decision(self, data):
 	  pass
 
