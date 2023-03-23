@@ -46,6 +46,7 @@ class Control:
         self.sensor_data = {}
 
     def execute_decision(self, decision):
+        """Executes the decision from the decision classes."""
         self.stack.append(decision)
         # Another benefit of using a deque is that it allows for simultaneous inserting and deleting.
         # from either the rear or front of the list.
@@ -221,7 +222,8 @@ def start_driverless_car(choice):
         traffic_decision = TrafficSignalRecognitionDecision()
 
         control = Control()
-        # Instead of using if-else statements, I'm using a list to store the sensor and decision classes. I find this method to be more efficient and easier to read.
+        # Instead of using if-else statements, I'm using a list to store the sensor and decision classes.
+        # I find this method easier to read.
         if choice in range(1, 4):
             sensors = [lane_sensor, obstacle_sensor, traffic_sensor]
             decisions = [lane_decision, obstacle_decision, traffic_decision]
@@ -235,16 +237,26 @@ def start_driverless_car(choice):
         print(err)
         return
 
+# I decided to create a helper function to handle the user input menu options.
+# This was done to clean up the main program.
+def get_user_choice():
+    """Gets the user's choice from the menu"""	
+    print("\nWelcome to the Driverless Car Program (Tesla Home Edition))\n")
+    print("Please select a sensor to test:")
+    print("1. Lane Detection Sensor")
+    print("2. Obstacle Avoidance Sensor")
+    print("3. Traffic Signal Recognition Sensor")
+    print("4. Exit\n")
+    # Additional error handling to incase user enters a string.
+    try:
+        return int(input("Enter your choice: "))
+    except ValueError:
+        print("Invalid choice. Please enter a number between 1 and 4.")
+        return get_user_choice()
 
 if __name__ == "__main__":
     while True:
-        print("Welcome to the Driverless Car Program (Tesla Home Edition))")
-        print("Please select a sensor to test:")
-        print("1. Lane Detection Sensor")
-        print("2. Obstacle Avoidance Sensor")
-        print("3. Traffic Signal Recognition Sensor")
-        print("4. Exit")
-        user_choice = int(input("Your choice: "))
+        user_choice = get_user_choice()
         if user_choice == 4:
             break
         start_driverless_car(user_choice)
