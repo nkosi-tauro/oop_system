@@ -3,10 +3,13 @@ This python program is based on the design of the driverless car system.
 I used my original design classes then added on 
 what I thought could be additional scenarios for the prgram to handle.
 """
-
 import random
 from abc import ABC, abstractmethod
 
+import logging
+
+# Setting up basic logging configuration
+logging.basicConfig(level=logging.INFO, format='%(asctime)s:%(levelname)s: %(message)s')
 
 # I chose to keep the design classes from my design document.
 # I think that they are a good representation of the system that I am trying to create.
@@ -94,7 +97,7 @@ class LaneDetectionSensor(Sensor):
                     "Lane detection data is empty or invalid.")
             return lane_data
         except InvalidSensorDataError as err:
-            print(err)
+            logging.error(err)
             return {}
 
 
@@ -115,8 +118,9 @@ class ObstacleAvoidanceSensor(Sensor):
                     "Obstacle avoidance data is empty or invalid.")
             return obstacle_data
         except InvalidSensorDataError as err:
-            print(err)
+            logging.error(err)
             return {}
+
 
 
 class TrafficSignalRecognitionSensor(Sensor):
@@ -134,7 +138,7 @@ class TrafficSignalRecognitionSensor(Sensor):
                     "Traffic signal recognition data is empty or invalid.")
             return traffic_data
         except InvalidSensorDataError as err:
-            print(err)
+            logging.error(err)
             return {}
 
 # Decision subclasses
@@ -157,7 +161,7 @@ class LaneDetectionDecision(Decision):
             else:
                 raise InvalidDecisionError("Unable to determine lane status.")
         except InvalidDecisionError as err:
-            print(err)
+            logging.error(err)
             return "Unable to determine lane status."
 
 
@@ -176,7 +180,7 @@ class ObstacleAvoidanceDecision(Decision):
             else:
                 raise InvalidDecisionError("No obstacle detected.")
         except InvalidDecisionError as err:
-            print(err)
+            logging.error(err)
             return "Error: The obstacle avoidance sensor is not working properly. Applying brakes, The vehicle will slow down and wait for recalibration."
 
 
@@ -198,28 +202,24 @@ class TrafficSignalRecognitionDecision(Decision):
                 raise InvalidDecisionError(
                     "Unable to determine traffic light state.")
         except InvalidDecisionError as err:
-            print(err)
+            logging.error(err)
             return "Unable to determine traffic light state."
 
 
 # Main program
 def start_driverless_car(choice):
     """Starts the driverless car"""
-    # initiate the subclasses
-    # sensor classes
     try:
         lane_sensor = LaneDetectionSensor()
         obstacle_sensor = ObstacleAvoidanceSensor()
         traffic_sensor = TrafficSignalRecognitionSensor()
 
-        # decision classes
         lane_decision = LaneDetectionDecision()
         obstacle_decision = ObstacleAvoidanceDecision()
         traffic_decision = TrafficSignalRecognitionDecision()
 
         control = Control()
-        # Instead of using if-else statements, I'm using a list to store the sensor and decision classes.
-        # I find this method easier to read.
+
         if choice in range(1, 4):
             sensors = [lane_sensor, obstacle_sensor, traffic_sensor]
             decisions = [lane_decision, obstacle_decision, traffic_decision]
@@ -230,27 +230,27 @@ def start_driverless_car(choice):
         else:
             raise ValueError("Invalid choice.")
     except ValueError as err:
-        print(err)
+        logging.error(err)
         return
 
-# I decided to create a helper function to handle the user input menu options.
-# This was done to clean up the main program.
 def get_user_choice():
-    """Gets the user's choice from the menu"""	
+    """Gets the user's choice from the menu"""    
     print("\nWelcome to the Driverless Car Program (Tesla Home Edition))\n")
     print("Please select a sensor to test:")
     print("1. Lane Detection Sensor")
     print("2. Obstacle Avoidance Sensor")
     print("3. Traffic Signal Recognition Sensor")
     print("4. Exit\n")
-    # Additional error handling to incase user enters a string.
     try:
         return int(input("Enter your choice: "))
     except ValueError:
-        print("Invalid choice. Please enter a number between 1 and 4.")
+        logging.error("Invalid choice. Please enter a number between 1 and 4.")
         return get_user_choice()
 
 if __name__ == "__main__":
+    # Set up logging
+    logging.basicConfig(filename="driverless_car.log", level=logging.ERROR)
+
     while True:
         user_choice = get_user_choice()
         if user_choice == 4:
