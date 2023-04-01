@@ -4,11 +4,6 @@ I used my original design classes then added on
 what I thought could be additional scenarios for the prgram to handle.
 """
 
-# Im using the deque module from collections as it will be much better than a normal list as
-# it allows for faster insertion and deletion of items from the front or back of the list.
-# It will be used to store decisions and obviously the faster we can add or remove decsions
-# the smoother the operation of our vehicle
-from collections import deque
 import random
 from abc import ABC, abstractmethod
 
@@ -25,32 +20,27 @@ class Sensor(ABC):
     """
     @abstractmethod
     def process_data(self):
-        pass
+        "processes the data from the sensors."
 
 
 class Decision(ABC):
     """The decision class will process the data from the sensors."""
     @abstractmethod
     def make_decision(self, data):
-        pass
+        "makes a decision based on the data from the sensors."
 
 
 class Control:
     """
-    The control class will process the decision from the decision class and control the car accordingly.
+    The control class will process the decision from the decision class 
+    and control the car accordingly.
     """
 
     def __init__(self):
-        self.stack = []
-        self.queue = deque([])
         self.sensor_data = {}
 
     def execute_decision(self, decision):
         """Executes the decision from the decision classes."""
-        self.stack.append(decision)
-        # Another benefit of using a deque is that it allows for simultaneous inserting and deleting.
-        # from either the rear or front of the list.
-        self.queue.appendleft(decision)
         self.sensor_data[decision] = decision
         print(f"Executing decision: {decision}")
 
@@ -74,17 +64,23 @@ class InvalidDecisionError(Exception):
 
 
 # """
-# The bulk of the program will consist of 2 Subclasses, the Sensor and Decision subclasses. These will be used to process the data from the sensors and make a decision on what to do next. Each Sensor subclass will have a corresponding Decision subclass.
+# The bulk of the program will consist of 2 Subclasses, the Sensor and Decision subclasses.
+# These will be used to process the data from the sensors and make a decision on what to do next.
+# Each Sensor subclass will have a corresponding Decision subclass.
 
-# So in a way simulating how the system would work in real life. 
-# Sensors such as Lane Detection, Obstacle Detection, etc. will be used to detect the environment around the car and pass on the data to the decision class. 
+# So in a way simulating how the system would work in real life.
+# Sensors such as Lane Detection, Obstacle Detection, etc.
+# will be used to detect the environment around the car and pass on the data to the decision class.
 # """
 
 # Sensor subclasses
 
 
 class LaneDetectionSensor(Sensor):
-    """The Lane Detection Sensor class will process data and pass it on to the corresponding decision class."""
+    """
+    The Lane Detection Sensor class will process data 
+    and pass it on to the corresponding decision class.
+    """
 
     def process_data(self):
         try:
