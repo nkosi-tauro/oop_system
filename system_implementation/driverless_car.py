@@ -1,15 +1,17 @@
 """
 This python program is based on the design of the driverless car system.
 I used my original design classes then added on 
-what I thought could be additional scenarios for the prgram to handle.
+a class that uses OpenCV.
 """
+# The below is just to disable pylint errors being caused by the OpenCV library.
 # pylint: disable=maybe-no-member
 import random
 from abc import ABC, abstractmethod
+import logging
 import numpy as np
 import cv2
 
-import logging
+
 
 # Setting up basic logging configuration
 logging.basicConfig(level=logging.INFO, format='%(asctime)s:%(levelname)s: %(message)s')
@@ -42,12 +44,8 @@ class Control:
     and control the car accordingly.
     """
 
-    def __init__(self):
-        self.sensor_data = {}
-
     def execute_decision(self, decision):
         """Executes the decision from the decision classes."""
-        self.sensor_data[decision] = decision
         print(f"\nExecuting decision: {decision}")
 
 
@@ -225,7 +223,8 @@ class TrafficSignalRecognitionSensorCV(Sensor):
         """
         # Important: Please note depending on whether you are using a Mac\Linux or Windows machine,
         # you may need to change the path to the image file (Relative or Absolute Path).
-        image = cv2.imread("trafficgo.jpg")
+        # Example path: "system_implementation\\trafficstop.jpg"
+        image = cv2.imread("system_implementation\\trafficstop.jpg")
         logging.info("Processing traffic recognition sensor data...")
         try:
             # Convert camera data to HSV format for better color detection
