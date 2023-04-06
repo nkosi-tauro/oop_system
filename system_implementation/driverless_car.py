@@ -225,7 +225,7 @@ class TrafficSignalRecognitionSensorCV(Sensor):
         """
         # Important: Please note depending on whether you are using a Mac\Linux or Windows machine,
         # you may need to change the path to the image file (Relative or Absolute Path).
-        image = cv2.imread("Assignment 2 - System Implementation\\trafficgo.jpg")
+        image = cv2.imread("trafficgo.jpg")
         logging.info("Processing traffic recognition sensor data...")
         try:
             # Convert camera data to HSV format for better color detection
