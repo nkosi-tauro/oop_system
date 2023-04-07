@@ -219,7 +219,8 @@ class TrafficSignalRecognitionSensorCV(Sensor):
         Use trafficstop.jpg to test for red
         Use trafficgo.jpg to test for green
         Use trafficslow.jpg to test for yellow
-        One may need to adjust the HSV values to improve accuracy for other images
+        One may need to adjust the HSV values to improve accuracy for other images 
+        (See Reference in Readme "Color models and color spaces" for more information)
         """
         # Important: Please note depending on whether you are using a Mac\Linux or Windows machine,
         # you may need to change the path to the image file (Relative or Absolute Path).
