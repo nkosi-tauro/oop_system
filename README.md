@@ -99,11 +99,11 @@ $ python driverless_car_unittest.py
 The following references and resources were used to build this project:
 
 
-Krishna, A. (Feb 2, 2022) Object-Oriented Programming in Python. *FreeCodeCamp*. Available at: [Object-Oriented Programming in Python](https://www.freecodecamp.org/news/object-oriented-programming-in-python/) [Accessed 25 March 2023]  
+Krishna, A. (Feb 2, 2022) Object-Oriented Programming in Python. *FreeCodeCamp*. Available at: [Object-Oriented Programming in Python](https://www.freecodecamp.org/news/object-oriented-programming-in-python/) [Accessed 20 March 2023]  
 
-Ajitsaria, A. Logging in Python. *Real Python*. Available at: [Logging in Python](https://realpython.com/python-logging/) [Accessed 29 March 2023]  
+Ajitsaria, A. Logging in Python. *Real Python*. Available at: [Logging in Python](https://realpython.com/python-logging/) [Accessed 30 March 2023]  
 
-Shaw, A. (Oct 22, 2018) Getting Started With Testing in Python. *Real Python*. Available from: [Getting Started With Testing in Python](https://realpython.com/python-testing/) [Accessed 02 April 2023]  
+Shaw, A. (Oct 22, 2018) Getting Started With Testing in Python. *Real Python*. Available from: [Getting Started With Testing in Python](https://realpython.com/python-testing/) [Accessed 01 April 2023]  
 
 
 
